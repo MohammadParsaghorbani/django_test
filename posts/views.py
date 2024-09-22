@@ -1,23 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post
+from .models import Post,Comments
 
 # Create your views here.
 def index(request):
     return HttpResponse("<h1>welcom</h1>")
 
 def home(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
-    return render(request, 'posts/index.html', context=context)
-
+    # return render(request, 'index.html')
+    return HttpResponse('<h1>parsa</h1>')
 
 def post_list(request):
     posts = Post.objects.all()
     context = {'posts' : posts}
-    return render(request,'posts/post_list.html',context=context)
+    return render(request,'post_list.html',context=context)
 
 def post_detail(request,pk):
     post = Post.objects.get(pk = pk)
-    context = {'post':post}
-    return render(request,'posts/post_detail.html',context=context)
+    comments = Comments.objects.filter(post=post)
+    context = {'post':post,'comments' : comments}
+    return render(request,'post_details.html',context=context)
