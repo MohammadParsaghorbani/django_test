@@ -7,7 +7,9 @@ def index(request):
     return HttpResponse("<h1>welcom</h1>")
 
 def home(request):
-    return HttpResponse("<h1>welcome</h1>")
+    posts = Post.objects.all()
+    context = {'posts': posts}
+    return render(request, 'posts/index.html', context=context)
 
 
 def post_list(request):
