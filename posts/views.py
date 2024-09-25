@@ -7,8 +7,8 @@ def index(request):
     return HttpResponse("<h1>welcom</h1>")
 
 def home(request):
-    # return render(request, 'index.html')
-    return HttpResponse('<h1>parsa</h1>')
+    return render(request, 'index.html')
+    #return HttpResponse('<h1>parsa</h1>')
 
 def post_list(request):
     posts = Post.objects.all()
